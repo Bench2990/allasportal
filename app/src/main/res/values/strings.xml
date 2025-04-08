@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">JobCenter</string>
+    <string name="name">Név</string>
+    <string name="password">Jelszó</string>
+    <string name="login">Bejelentkezés</string>
+    <string name="registration">Regisztráció</string>
+    <string name="username">Név</string>
+    <string name="email">E-mail cím</string>
+    <string name="password_again">Jelszó újra</string>
+    <string name="cancel">Vissza</string>
+    <string name="phone">Telefonszám</string>
+    <string name="city">Település</string>
+    <string name="loginguest">Bejelentkezés vendégként</string>
+    <string-array name="genders">
+        <item>Nem szeretném megadni</item>
+        <item>Nő</item>
+        <item>Férfi</item>
+
+    </string-array>
+</resources>

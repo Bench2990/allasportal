@@ -1,0 +1,15 @@
+<resources>
+    <!-- Zöld színek -->
+    <color name="colorPrimary">#2E7D32</color>        <!-- Sötétzöld -->
+    <color name="colorPrimaryVariant">#1B5E20</color> <!-- Még sötétebb zöld -->
+    <color name="colorOnPrimary">#FFFFFF</color>      <!-- Fehér szöveg -->
+
+    <color name="colorSecondary">#81C784</color>      <!-- Világoszöld -->
+    <color name="colorSecondaryVariant">#66BB6A</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+
+    <color name="background">#F0F4F8</color>           <!-- Világos háttér -->
+    <color name="surface">#FFFFFF</color>             <!-- Kártyákhoz -->
+    <color name="onBackground">#000000</color>
+    <color name="onSurface">#000000</color>
+</resources>

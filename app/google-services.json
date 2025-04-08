@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "647967466275",
+    "project_id": "jobs-ecfee",
+    "storage_bucket": "jobs-ecfee.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647967466275:android:25f56e6b5b19ecf1652296",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnsRd3VS1V2pYSXlrbxX3IPzrIgnGeXfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

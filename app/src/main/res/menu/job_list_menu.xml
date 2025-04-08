@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search_bar"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_search_24"
+        android:title="Keresés"
+        app:actionViewClass="android.widget.SearchView" />
+
+
+    <item
+        android:id="@+id/log_out_button"
+        app:showAsAction="never"
+        android:title="Kijelentkezés"
+        android:orderInCategory="2" />
+
+    <item
+        android:id="@+id/settings_button"
+        app:showAsAction="never"
+        android:title="Beállítások"
+        android:orderInCategory="1" />
+</menu>
