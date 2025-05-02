@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +13,10 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.Manifest;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -22,11 +28,24 @@ public class JobItemAdapter extends RecyclerView.Adapter<JobItemAdapter.ViewHold
     private Context mContext;
     private int lastPosition = -1;
 
+    private OnJobActionListener listener;
+    private boolean isAdmin = false;
+
+    public JobItemAdapter(Context context, ArrayList<JobItem> jobItems, boolean isAdmin, OnJobActionListener listener) {
+        this.mContext = context;
+        this.mJobItems = jobItems;
+        this.mJobItemsAll = new ArrayList<>(jobItems);
+        this.isAdmin = isAdmin;
+        this.listener = listener;
+    }
+
     public JobItemAdapter(Context context, ArrayList<JobItem> jobItems) {
         this.mContext = context;
         this.mJobItems = jobItems;
-        this.mJobItemsAll = jobItems;
+        this.mJobItemsAll = new ArrayList<>(jobItems);
+        this.isAdmin = false;
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,6 +63,7 @@ public class JobItemAdapter extends RecyclerView.Adapter<JobItemAdapter.ViewHold
             holder.itemView.startAnimation(animation);
             lastPosition = holder.getAdapterPosition();
         }
+
     }
 
     @Override
@@ -93,6 +113,9 @@ public class JobItemAdapter extends RecyclerView.Adapter<JobItemAdapter.ViewHold
         private TextView workTypeText;
         private Button applyButton;
 
+        private Button editButton;
+        private Button deleteButton;
+
         public ViewHolder(View itemView) {
             super(itemView);
             jobTitleText = itemView.findViewById(R.id.jobTitle);
@@ -102,17 +125,47 @@ public class JobItemAdapter extends RecyclerView.Adapter<JobItemAdapter.ViewHold
             workTypeText = itemView.findViewById(R.id.workType);
             applyButton = itemView.findViewById(R.id.applyButton);
 
-            applyButton.setOnClickListener(view -> {
+            editButton = itemView.findViewById(R.id.editButton);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
 
-            });
+
+
         }
 
         void bindTo(JobItem jobItem) {
+
             jobTitleText.setText(jobItem.getTitle());
             companyText.setText(jobItem.getCompany());
             locationText.setText(jobItem.getLocation());
             salaryText.setText(jobItem.getSalary());
             workTypeText.setText(jobItem.getWorkType());
+
+            if (isAdmin) {
+                applyButton.setVisibility(View.GONE);
+                editButton.setVisibility(View.VISIBLE);
+                deleteButton.setVisibility(View.VISIBLE);
+
+                editButton.setOnClickListener(v -> listener.onEditClick(jobItem));
+                deleteButton.setOnClickListener(v -> listener.onDeleteClick(jobItem));
+            } else {
+                applyButton.setVisibility(View.VISIBLE);
+                editButton.setVisibility(View.GONE);
+                deleteButton.setVisibility(View.GONE);
+            }
+
+            applyButton.setOnClickListener(view -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    if (ContextCompat.checkSelfPermission(mContext, android.Manifest.permission.POST_NOTIFICATIONS)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions((Activity) mContext,
+                                new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1001);
+                        return;
+                    }
+                }
+
+                NotificationHandler handler = new NotificationHandler(mContext);
+                handler.send("Sikeresen jelentkeztél a(z) " + jobItem.getTitle() + " pozícióra.");
+            });
         }
     }
 }

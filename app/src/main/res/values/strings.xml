@@ -11,10 +11,15 @@
     <string name="phone">Telefonszám</string>
     <string name="city">Település</string>
     <string name="loginguest">Bejelentkezés vendégként</string>
+    <string name="admin_login">Admin belépés</string>
     <string-array name="genders">
         <item>Nem szeretném megadni</item>
         <item>Nő</item>
         <item>Férfi</item>
 
+    </string-array>
+    <string-array name="sort_options">
+        <item>Rendezés név szerint</item>
+        <item>Rendezés fizetés szerint</item>
     </string-array>
 </resources>

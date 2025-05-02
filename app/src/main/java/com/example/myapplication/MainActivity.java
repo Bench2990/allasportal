@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     EditText userEmailET;
     EditText passwordET;
 
+    CheckBox adminCheckBox;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         passwordET = findViewById(R.id.editTextPassword);
 
         mAuth = FirebaseAuth.getInstance();
+
+        adminCheckBox = findViewById(R.id.adminCheckBox);
+
     }
 
 
@@ -69,9 +76,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void start() {
-        Intent intent = new Intent(this, JobListActivity.class);
-        startActivity(intent);
+        if (adminCheckBox.isChecked()) {
+            Intent intent = new Intent(this, AdminActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, JobListActivity.class);
+            startActivity(intent);
+        }
     }
+
 
     public void regist(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
@@ -79,17 +92,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void loginAsGuest(View view) {
-        mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Log.d(LOG_TAG, "Login as guest done!");
-                    start();
-                } else {
-                    Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
 }

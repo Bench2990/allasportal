@@ -1,18 +1,18 @@
 package com.example.myapplication;
 
 public class JobItem {
-    private String id;
+
+    private String Id;
     private String title;
     private String company;
     private String location;
     private String salary;
     private String workType;
 
-    public JobItem() {
-    }
+    public JobItem() {}
 
     public JobItem(String id, String title, String company, String location, String salary, String workType) {
-        this.id = id;
+        this.Id = id;
         this.title = title;
         this.company = company;
         this.location = location;
@@ -21,7 +21,11 @@ public class JobItem {
     }
 
     public String getId() {
-        return id;
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getTitle() {
@@ -44,9 +48,7 @@ public class JobItem {
         return workType;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+
 
     public void setTitle(String title) {
         this.title = title;

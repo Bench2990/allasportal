@@ -62,5 +62,26 @@
             android:layout_marginTop="12dp"
             android:layout_centerHorizontal="true"
             android:text="Jelentkezem" />
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Szerkesztés"
+            android:layout_below="@id/applyButton"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentStart="true"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Törlés"
+            android:layout_below="@id/editButton"
+            android:layout_marginTop="4dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="gone" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
